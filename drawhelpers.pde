@@ -7,8 +7,15 @@ void timerdraw(float total){
   fill(255);
   arc(x,y,size,size,0,PI,OPEN);
   
-  fill(150);
-  arc (x,y, size,size,0,((float)timer/total)*PI);
+  float left = (float)timer/total;
+  if (left > 0.9f){
+    fill(255,150,150);
+  }else if (left > 0.7f){
+    fill(255,222,50);
+  }else{
+    fill(175);
+  }
+  arc (x,y, size,size,0,left*PI);
   
   noFill();
   stroke(0);

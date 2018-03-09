@@ -13,12 +13,10 @@ int timer;
 int[] counter;
 
 boolean[] btnstate;
- 
-boolean playing;
 
 int[] balltimer;
 
-string mode = "start"; //start, play, end
+String mode = "start"; //start, play, end
 
 //
 PImage background;
@@ -35,7 +33,7 @@ void setup(){
   background = loadImage("background.png");
   
   PFont font;
-  font = loadFont("Monospaced-48.vlw");
+  font = loadFont("Kiddish-48.vlw");
   textFont(font, 30);
   textAlign(CENTER,CENTER);
   
@@ -44,7 +42,7 @@ void setup(){
 }
 
 void reset(){
-  playing = false;
+  mode = "start";
   btnstate = new boolean[]{false,false};
   counter = new int[]{0,0};
   balltimer = new int[]{millis(),millis()};
@@ -101,11 +99,14 @@ void keyPressed(){
   }
   
   if (key == ' '){
-    if (!playing){
+    if (mode != "play"){
       reset();
-      playing = true;
+      mode = "play";
     }
-  }
+  } if (key == 'r'){
+   //reset
+   reset();
+ }
 }
 void keyReleased(){
   if (key == 'a' || key == 'A'){
@@ -118,7 +119,7 @@ void keyReleased(){
 void ballin(int bucket){
   if (!btnstate[bucket]){
     btnstate[bucket] = true;
-    if (playing){
+    if (mode == "play"){
       if ((millis() - balltimer[bucket]) > 1000){
         //1 second between ball entries
         println(millis());
