@@ -4,7 +4,8 @@ void startscreen(){
   background(255);
   float h = (int)(background.height * ((float)width/(float)background.width));
   image(background,0,height-h,width,h);
-  text("space to start",width/2,height/5);
+  text("step on the platform to start!",width/2,height/5);
+  text("both farmers need peas.\ntry to give them an equal amount!",width/2,height*3/5);
 }
 
 void gamescreen(){
