@@ -10,11 +10,11 @@ boolean arduino = false;
 
 int timestart;
 int timer;
-int[] counter;
+int counter;
 
-boolean[] btnstate;
+boolean btnstate;
 
-int[] balltimer;
+int balltimer;
 
 String mode = "start"; //start, play, end
 
@@ -24,7 +24,7 @@ PImage background;
 void setup(){
   if (arduino){
     println(Serial.list());
-    String portName = Serial.list()[8];
+    String portName = Serial.list()[9];
     myPort = new Serial(this, portName, 9600);
   }
   
@@ -37,15 +37,16 @@ void setup(){
   textFont(font, 30);
   textAlign(CENTER,CENTER);
   
-  size (900,500);
+  size (900,600);
+  //fullScreen();
   reset();
 }
 
 void reset(){
   mode = "start";
-  btnstate = new boolean[]{false,false};
-  counter = new int[]{0,0};
-  balltimer = new int[]{millis(),millis()};
+  btnstate = false;
+  counter = 0;
+  balltimer = millis();
   timer = 0;
   timestart = millis();
   
@@ -62,17 +63,14 @@ void draw(){
       //val = 4, daikon down
       switch(val){
         case 1:
-          ballout(0);
+          ballout();
           break;
         case 2:
-          //carrotIn();
-          ballin(0);
+          ballin();
           break;
         case 3:
-          ballout(1);
           break;
         case 4:
-          ballin(1);
           break;
       }
       println(val);
@@ -93,9 +91,8 @@ void draw(){
 
 void keyPressed(){
   if (key == 'a' || key == 'A'){
-    ballin(0);
+    ballin();
   }if (key == 'l' || key == 'L'){
-    ballin(1);
   }
   
   if (key == ' '){
@@ -110,26 +107,25 @@ void keyPressed(){
 }
 void keyReleased(){
   if (key == 'a' || key == 'A'){
-    ballout(0);
+    ballout();
   }if (key == 'l' || key == 'L'){
-    ballout(1);
   }
 }
 
-void ballin(int bucket){
-  if (!btnstate[bucket]){
-    btnstate[bucket] = true;
+void ballin(){
+  if (!btnstate){
+    btnstate = true;
     if (mode == "play"){
-      if ((millis() - balltimer[bucket]) > 1000){
+      if ((millis() - balltimer) > 1000){
         //1 second between ball entries
         println(millis());
         println(balltimer);
-        counter[bucket] ++ ;
-        balltimer[bucket] = millis();
+        counter ++ ;
+        balltimer= millis();
       }
     }
   }
 }
-void ballout(int bucket){
-  btnstate[bucket] = false;
+void ballout(){
+  btnstate = false;
 }

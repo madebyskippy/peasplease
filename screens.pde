@@ -5,7 +5,7 @@ void startscreen(){
   float h = (int)(background.height * ((float)width/(float)background.width));
   image(background,0,height-h,width,h);
   text("step on the platform to start!",width/2,height/5);
-  text("both farmers need peas.\ntry to give them an equal amount!",width/2,height*3/5);
+  text("i need peas!",width/2,height*3/5);
 }
 
 void gamescreen(){
@@ -13,10 +13,9 @@ void gamescreen(){
   float h = (int)(background.height * ((float)width/(float)background.width));
   image(background,0,height-h,width,h);
   
-  text("please give us\nan equal number\nof peas, please!",width/2,height/2);
+  text("give me\npeas, please!",width/2,height/2);
   
-  text(str(counter[0]),width/4,height*2/3);
-  text(str(counter[1]),width*3/4,height*2/3);
+  text(str(counter),width/2,height*2/3);
   
   timer = millis()-timestart;
   if (timer > timeend){
@@ -31,5 +30,5 @@ void endscreen(){
   float h = (int)(background.height * ((float)width/(float)background.width));
   image(background,0,height-h,width,h);
   
-  text("you gave us "+str(counter[0])+" and "+str(counter[1])+" peas.",width/2,height/2);
+  text("you gave me "+str(counter)+"  peas.",width/2,height/2);
 }
