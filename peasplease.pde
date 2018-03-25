@@ -20,6 +20,8 @@ String mode = "start"; //start, play, end
 
 //
 PImage background;
+PImage[] mrpea = new PImage[4];
+PImage basket;
 
 void setup(){
   if (arduino){
@@ -31,14 +33,18 @@ void setup(){
   frameRate(60);
   
   background = loadImage("background.png");
+  basket = loadImage("basket.png");
+  for (int i=0; i<mrpea.length; i++){
+    mrpea[i]=loadImage("mrpea"+str(i)+".png");
+  }
   
   PFont font;
   font = loadFont("Kiddish-48.vlw");
   textFont(font, 30);
   textAlign(CENTER,CENTER);
   
-  size (900,600);
-  //fullScreen();
+  //size (1920,1080);
+  fullScreen();
   reset();
 }
 
