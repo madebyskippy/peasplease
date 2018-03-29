@@ -36,6 +36,10 @@ void gamescreen(){
   
   peadraw();
   
+  tint(255,255,255,100);
+  image(basket_top,width/4-basket.width/2 ,890-basket.height);
+  tint(255);
+  
   fill(255);
   textFont(fonts,150);
   text(str(counter),width*1/4,height*1/4);

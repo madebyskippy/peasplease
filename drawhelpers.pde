@@ -23,12 +23,19 @@ void playerdraw(){
   image(mrpea[frame],width*3/5,895-mrpea[3].height);
 }
 
-IntList peaframe = new IntList();
+int[] peaframe = new int[36];
 PVector[] peapos = new PVector[36];
+float[] peaangle = new float[36];
 void peadraw(){
+  imageMode(CENTER);
   for (int i=0; i<counter; i++){
-    image(peas[peaframe.get(i)],peapos[i].x,peapos[i].y);
+    pushMatrix();
+    translate(peapos[i].x,peapos[i].y);
+    rotate(peaangle[i]);
+    image(peas[peaframe[i]],0,0);
+    popMatrix();
   }
+  imageMode(CORNER);
 }
 
 void sproutdraw(){

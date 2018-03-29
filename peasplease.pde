@@ -26,6 +26,7 @@ PImage title;
 PImage[] mrpea = new PImage[4];
 PImage[] peas = new PImage[3];
 PImage basket;
+PImage basket_top;
 PImage[] sprouts = new PImage[4];
 PImage[] clouds = new PImage[4];
 
@@ -45,6 +46,7 @@ void setup(){
   background_title = loadImage("background_title.png");
   title = loadImage("title.png");
   basket = loadImage("basket.png");
+  basket_top = loadImage("basket_top.png");
   for (int i=0; i<mrpea.length; i++){
     mrpea[i]=loadImage("mrpea"+str(i)+".png");
     sprouts[i] = loadImage("sprout"+str(i)+".png");
@@ -73,10 +75,22 @@ void reset(){
   timestart = millis();
   hasanim=false;
   frame = 3;
+  IntList rowpos = new IntList(6);
+  rowpos.append(0);
+  rowpos.append(1);
+  rowpos.append(2);
+  rowpos.append(3);
+  rowpos.append(4);
+  rowpos.append(5);
   for (int i=0; i<peapos.length; i++){
-    peapos[i] = new PVector(380+random(-90,90),775-25*((i+1)/3)-random(0,25));
+    if (i%6==0){
+      rowpos.shuffle();
+    }
+    peapos[i] = new PVector(325+35*rowpos.get(i%6),840-40*((int)(i/6))-random(0,40));
+    peaangle[i] = random(0,3.14);
+    peaframe[i] = (int)random(3);
   }
-  
+    
   fill(0);
 }
 
@@ -143,12 +157,11 @@ void ballin(){
   if (!btnstate){
     btnstate = true;
     if (mode == "play"){
-      if (counter<36){//(millis() - balltimer) > 1000){
+      if ((millis() - balltimer) > 1000){
         //1 second between ball entries
         counter ++ ;
         balltimer= millis();
         hasanim = true;
-        peaframe.append((int)random(3));
       }
     }
   }
