@@ -13,6 +13,7 @@ int timer;
 int counter;
 
 boolean btnstate;
+boolean hasanim;
 
 int balltimer;
 
@@ -20,8 +21,16 @@ String mode = "start"; //start, play, end
 
 //
 PImage background;
+PImage background_title;
+PImage title;
 PImage[] mrpea = new PImage[4];
+PImage[] peas = new PImage[3];
 PImage basket;
+PImage[] sprouts = new PImage[4];
+PImage[] clouds = new PImage[4];
+
+PFont fontk;
+PFont fonts;
 
 void setup(){
   if (arduino){
@@ -33,14 +42,21 @@ void setup(){
   frameRate(60);
   
   background = loadImage("background.png");
+  background_title = loadImage("background_title.png");
+  title = loadImage("title.png");
   basket = loadImage("basket.png");
   for (int i=0; i<mrpea.length; i++){
     mrpea[i]=loadImage("mrpea"+str(i)+".png");
+    sprouts[i] = loadImage("sprout"+str(i)+".png");
+    clouds[i] = loadImage("cloud"+str(i)+".png");
+    if (i<3){
+      peas[i] = loadImage("peas"+str(i)+".png");
+    }
   }
   
-  PFont font;
-  font = loadFont("Kiddish-48.vlw");
-  textFont(font, 30);
+  fonts = loadFont("DKSnippitySnap-150.vlw");
+  fontk = loadFont("Kiddish-48.vlw");
+  textFont(fontk, 50);
   textAlign(CENTER,CENTER);
   
   //size (1920,1080);
@@ -55,6 +71,11 @@ void reset(){
   balltimer = millis();
   timer = 0;
   timestart = millis();
+  hasanim=false;
+  frame = 3;
+  for (int i=0; i<peapos.length; i++){
+    peapos[i] = new PVector(380+random(-90,90),775-25*((i+1)/3)-random(0,25));
+  }
   
   fill(0);
 }
@@ -122,12 +143,12 @@ void ballin(){
   if (!btnstate){
     btnstate = true;
     if (mode == "play"){
-      if ((millis() - balltimer) > 1000){
+      if (counter<36){//(millis() - balltimer) > 1000){
         //1 second between ball entries
-        println(millis());
-        println(balltimer);
         counter ++ ;
         balltimer= millis();
+        hasanim = true;
+        peaframe.append((int)random(3));
       }
     }
   }

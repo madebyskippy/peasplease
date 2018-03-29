@@ -1,3 +1,47 @@
+int frametime = (int)(1000/9);
+int frametimer;
+int frame;
+void playerdraw(){
+  if (mode == "play"){
+    if (frame == 3){
+      frame = 2;
+    }
+    if (hasanim){
+      hasanim = false;
+      frame = 0;
+      frametimer = millis();
+      println("ok starting anim");
+    }
+    if (frame != 2){
+      if (millis()-frametimer > frametime){
+        println("next frame");
+        frametimer = millis();
+        frame ++;
+      }
+    }
+  }
+  image(mrpea[frame],width*3/5,895-mrpea[3].height);
+}
+
+IntList peaframe = new IntList();
+PVector[] peapos = new PVector[36];
+void peadraw(){
+  for (int i=0; i<counter; i++){
+    image(peas[peaframe.get(i)],peapos[i].x,peapos[i].y);
+  }
+}
+
+void sproutdraw(){
+  //image(sprouts[0],91,928);
+  //image(sprouts[1],447,1000);
+  //image(sprouts[2],950,900);
+  //image(sprouts[3],1335,1000);
+  //image(sprouts[3],1770,878);
+}
+
+void clouddraw(){
+}
+
 void timerdraw(float total){
   int size = 300;
   float x=width/2;
