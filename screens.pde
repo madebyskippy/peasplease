@@ -11,15 +11,14 @@ void startscreen(){
   clouddraw();
   playerdraw();
   
-  textFont(fontk,50);
-  fill(0,0,0,100);
-  text("Step on the platform\nto start!",375+3,875+3);
-  text("You have a minute\nto deliver as many peas\nas you can.",375+3,650+3);
-  fill(255);
-  text("Step on the platform\nto start!",375,875);
-  text("You have a minute\nto deliver as many peas\nas you can.",375,650);
+  textdraw("Step on the platform to start!",625,875,80,fontk,3);
+  textdraw("You have a minute\nto deliver as many peas\nas you can.",375,650,50,fontk,3);
   
-  peadraw();
+  if (counter>0){
+    textdraw("You last gave",width*3/4,height/5,90,fontk,5);
+    textdraw(str(counter),width*3/4+25,height/5+90,150,fonts,5);
+    textdraw("peas.",width*3/4+160,height/5+80,90,fontk,5);
+  }
 }
 
 void gamescreen(){
@@ -40,13 +39,17 @@ void gamescreen(){
   image(basket_top,width/4-basket.width/2 ,890-basket.height);
   tint(255);
   
-  fill(255);
-  textFont(fonts,150);
-  text(str(counter),width*1/4,height*1/4);
+  textdraw(str(counter),width*1/4,height*1/4,150,fonts,7);
   
-  timer = millis()-timestart;
+  if (!isPaused){
+    timer = millis()-timestart-timepause;
+  }else{
+    textdraw("Paused!",width/2,height/2-150,150,fonts,5);
+    textdraw("Get back on\nthe platform!",width/2,height/2+50,100,fontk,5);
+  }
   if (timer > timeend){
-    mode = "end";
+    reset();
+    //mode = "start";
   }
   timerdraw((float)timeend);
   fill(0);
@@ -56,5 +59,6 @@ void endscreen(){
   background(255);
   image(background,width/2-background.width/2,0);
   
-  text("you gave me "+str(counter)+"  peas.",width/2,height/2);
+  textFont(fonts,90);
+  text("you gave\n"+str(counter)+"  peas.",width/2,height/2);
 }

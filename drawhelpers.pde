@@ -1,6 +1,16 @@
 int frametime = (int)(1000/9);
 int frametimer;
 int frame;
+
+void textdraw(String s, int x, int y, int sz, PFont f, int offs){
+  //the text, x pos, y pos, size of font, font, shadow offset
+  textFont(f,sz);
+  fill(0,0,0,100);
+  text(s,x+offs,y+offs);
+  fill(255);
+  text(s,x,y);
+}
+
 void playerdraw(){
   if (mode == "play"){
     if (frame == 3){
@@ -10,11 +20,9 @@ void playerdraw(){
       hasanim = false;
       frame = 0;
       frametimer = millis();
-      println("ok starting anim");
     }
     if (frame != 2){
       if (millis()-frametimer > frametime){
-        println("next frame");
         frametimer = millis();
         frame ++;
       }
@@ -50,15 +58,19 @@ void clouddraw(){
 }
 
 void timerdraw(float total){
-  int size = 300;
+  int size = 500;
   float x=width/2;
   float y=0;
   
   noStroke();
   fill(255);
+  if (isPaused){
+    fill(255,150,150);
+  }
   arc(x,y,size,size,0,PI,OPEN);
   
   float left = (float)timer/total;
+  
   if (left > 0.9f){
     fill(255,150,150);
   }else if (left > 0.7f){
