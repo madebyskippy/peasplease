@@ -37,6 +37,8 @@ PImage basket_top;
 PImage[] sprouts = new PImage[4];
 PImage[] clouds = new PImage[4];
 
+Cloud[] myClouds = new Cloud[4];
+
 PFont fontk;
 PFont fonts;
 
@@ -61,6 +63,9 @@ void setup() {
     if (i<3) {
       peas[i] = loadImage("peas"+str(i)+".png");
     }
+  }
+  for (int i = 0; i < myClouds.length; i++){
+    myClouds[i] = new Cloud(random(0, width), random(0, 0.6*height), random(1,4), i);
   }
 
   fonts = loadFont("DKSnippitySnap-150.vlw");
@@ -104,6 +109,7 @@ void reset() {
     peaangle[i] = random(0, 3.14);
     peaframe[i] = (int)random(3);
   }
+  for(int i = 0; i < myClouds.length; i++) myClouds[i].reset("full");
 
   fill(0);
 }
@@ -159,6 +165,9 @@ void keyPressed() {
     }else{
       platformon();
     }
+  
+  for(int i = 0; i < myClouds.length; i++) myClouds[i].reset("full");
+    
   } 
   if (key == 'r') {
     //reset
