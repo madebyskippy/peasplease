@@ -1,4 +1,4 @@
-int timeend = 10*1000; // in milliseconds
+int timeend = 60*1000; // in milliseconds
 
 void startscreen(){
   background(255);
