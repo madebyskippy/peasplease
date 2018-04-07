@@ -55,6 +55,12 @@ void sproutdraw(){
 }
 
 void clouddraw(){
+  for( int i = 0; i < myClouds.length; i++){
+    myClouds[i].draw();
+  }
+}
+
+void bushdraw(){
 }
 
 void timerdraw(float total){

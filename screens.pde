@@ -1,18 +1,26 @@
 int timeend = 10*1000; // in milliseconds
+int startTextY = 875; //dynamic position of start text
+int startTextAbs = 875; //static position of start text
+int startTextVel = 1; 
 
 void startscreen(){
   background(255);
-  image(background_title,width/2-background.width/2,0);
-  tint(0,0,0,100);
-  image(title,width/2-title.width-125+10,100+10);
-  tint(255);
-  image(title,width/2-title.width-125,100);
-  sproutdraw();
+  //image(background_title,width/2-background.width/2,0);
+  image(background,width/2-background.width/2,0);
   clouddraw();
+  
+  tint(0,0,0,100);
+  image(title,width/2-title.width-125+10,130+10);
+  tint(255);
+  image(title,width/2-title.width-125,130);
+  sproutdraw();
+  bushdraw();
   playerdraw();
   
-  textdraw("Step on the platform to start!",625,875,80,fontk,3);
-  textdraw("You have a minute\nto deliver as many peas\nas you can.",375,650,50,fontk,3);
+  if( startTextY < startTextAbs - 2 || startTextY > startTextAbs + 2) startTextVel *= -1;
+  startTextY += startTextVel;
+  textdraw("Step on the platform to start!",625,startTextY,80,fontk,3);
+  textdraw("You have one minute\nto deliver as many peas\nas you can.",375,650,50,fontk,3);
   
   if (counter>0){
     textdraw("You last gave",width*3/4,height/5,90,fontk,5);
@@ -23,7 +31,9 @@ void startscreen(){
 
 void gamescreen(){
   background(255);
-  image(background_title,width/2-background.width/2,0);
+  //image(background_title,width/2-background.width/2,0);
+  image(background,width/2-background.width/2,0);
+  clouddraw();
   
   fill(unhex("ff3f893c"));
   noStroke();
