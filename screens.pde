@@ -17,10 +17,12 @@ void startscreen(){
   bushdraw();
   playerdraw();
   
+  image(instructions, width/2-title.width-125, 470);
+  
   if( startTextY < startTextAbs - 2 || startTextY > startTextAbs + 2) startTextVel *= -1;
   startTextY += startTextVel;
-  textdraw("Step on the platform to start!",625,startTextY,80,fontk,3);
-  textdraw("You have one minute\nto deliver as many peas\nas you can.",375,650,50,fontk,3);
+  textdraw("Step on the platform to start!",width/2,startTextY,80,fontk,3);
+  textdraw("You have one minute\nto deliver as many peas\nas you can.",410,600,50,fontk,3);
   
   if (counter>0){
     textdraw("You last gave",width*3/4,height/5,90,fontk,5);
