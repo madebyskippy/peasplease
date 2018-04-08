@@ -26,8 +26,9 @@ int balltimer;
 String mode = "start"; //start, play, end
 
 //
-PImage background;
+PImage background, background_blank;
 PImage background_title;
+PImage bush, grass;;
 PImage title;
 PImage[] mrpea = new PImage[4];
 PImage[] peas = new PImage[3];
@@ -51,7 +52,10 @@ void setup() {
   frameRate(60);
 
   background = loadImage("background.png");
+  background_blank = loadImage("background_blank.png");
   background_title = loadImage("background_title.png");
+  grass = loadImage("grass.png");
+  bush = loadImage("bush.png");
   title = loadImage("title.png");
   basket = loadImage("basket.png");
   basket_top = loadImage("basket_top.png");

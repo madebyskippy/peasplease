@@ -61,6 +61,8 @@ void clouddraw(){
 }
 
 void bushdraw(){
+  image(bush,0,height-720);
+  image(grass,0, height-295);
 }
 
 void timerdraw(float total){

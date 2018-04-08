@@ -24,7 +24,7 @@ class Cloud{
     if(type == "full") x = random(-100, width);
     else{
       x = random(-500, -100);
-      y = random(0, 0.6 * height); // 0 to 60% of screen height
+      y = random(-120, 0.25 * height); // 0 to 60% of screen height
       speed = random(1, 4);
     }
   }

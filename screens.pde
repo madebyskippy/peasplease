@@ -6,7 +6,7 @@ int startTextVel = 1;
 void startscreen(){
   background(255);
   //image(background_title,width/2-background.width/2,0);
-  image(background,width/2-background.width/2,0);
+  image(background_blank,width/2-background.width/2,0);
   clouddraw();
   
   tint(0,0,0,100);
@@ -32,8 +32,10 @@ void startscreen(){
 void gamescreen(){
   background(255);
   //image(background_title,width/2-background.width/2,0);
-  image(background,width/2-background.width/2,0);
+  image(background_blank,width/2-background.width/2,0);
   clouddraw();
+  sproutdraw();
+  bushdraw();
   
   fill(unhex("ff3f893c"));
   noStroke();
