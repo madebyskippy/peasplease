@@ -29,6 +29,7 @@ String mode = "start"; //start, play, end
 //
 PImage background, background_blank;
 PImage background_title;
+PImage instructions;
 PImage bush, grass;;
 PImage title;
 PImage[] mrpea = new PImage[4];
@@ -55,6 +56,7 @@ void setup() {
   background = loadImage("background.png");
   background_blank = loadImage("background_blank.png");
   background_title = loadImage("background_title.png");
+  instructions = loadImage("instructions.png");
   grass = loadImage("grass.png");
   bush = loadImage("bush.png");
   title = loadImage("title.png");
