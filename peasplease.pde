@@ -20,6 +20,7 @@ int counter;
 
 boolean btnstate;
 boolean hasanim;
+int btnintime;
 
 int balltimer;
 
@@ -189,8 +190,14 @@ void keyReleased() {
 void ballin() {
   if (!btnstate) {
     btnstate = true;
-    if (mode == "play") {
-      if (!isPaused){
+    btnintime = millis();
+  }
+}
+void ballout() {
+  btnstate = false;
+  if (mode == "play") {
+    if (!isPaused){
+      if ((millis()-btnintime) > 25){
         if ((millis() - balltimer) > 1000) {
           //1 second between ball entries
           counter ++ ;
@@ -200,9 +207,6 @@ void ballin() {
       }
     }
   }
-}
-void ballout() {
-  btnstate = false;
 }
 
 void platformon(){
