@@ -28,7 +28,7 @@ void playerdraw(){
       }
     }
   }
-  image(mrpea[frame],width*3/5,895-mrpea[3].height);
+  image(mrpea[frame],width*3/5,225);
 }
 
 int[] peaframe = new int[36];

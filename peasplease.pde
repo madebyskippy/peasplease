@@ -29,8 +29,8 @@ String mode = "start"; //start, play, end
 //
 PImage background, background_blank;
 PImage background_title;
-PImage instructions;
-PImage bush, grass;;
+PImage instructions, speechbub;
+PImage bush, grass;
 PImage title;
 PImage[] mrpea = new PImage[4];
 PImage[] peas = new PImage[3];
@@ -57,6 +57,7 @@ void setup() {
   background_blank = loadImage("background_blank.png");
   background_title = loadImage("background_title.png");
   instructions = loadImage("instructions.png");
+  speechbub = loadImage("speechbub.png");
   grass = loadImage("grass.png");
   bush = loadImage("bush.png");
   title = loadImage("title.png");
@@ -111,7 +112,7 @@ void reset() {
     if (i%6==0) {
       rowpos.shuffle();
     }
-    peapos[i] = new PVector(325+35*rowpos.get(i%6), 840-40*((int)(i/6))-random(0, 40));
+    peapos[i] = new PVector(382+35*rowpos.get(i%6), 840-40*((int)(i/6))-random(0, 40));
     peaangle[i] = random(0, 3.14);
     peaframe[i] = (int)random(3);
   }
