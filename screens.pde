@@ -9,25 +9,31 @@ void startscreen(){
   image(background_blank,width/2-background.width/2,0);
   clouddraw();
   
-  tint(0,0,0,100);
-  image(title,width/2-title.width-125+10,130+10);
-  tint(255);
-  image(title,width/2-title.width-125,130);
   sproutdraw();
   bushdraw();
   playerdraw();
+  tint(0,0,0,100);
+  image(title,width/2-title.width-125+10,220+10);
+  tint(255);
+  image(title,width/2-title.width-125,220);
   
-  image(instructions, width/2-title.width-125, 470);
+  //image(instructions, width/2-title.width-125, 470);
+  image(speechbub, width-600, 90);
   
   if( startTextY < startTextAbs - 2 || startTextY > startTextAbs + 2) startTextVel *= -1;
   startTextY += startTextVel;
   textdraw("Step on the platform to start!",width/2,startTextY,80,fontk,3);
-  textdraw("You have one minute\nto deliver as many peas\nas you can.",410,600,50,fontk,3);
+  fill(0); 
+  noStroke();
+  textSize(48);
+  text("You have one minute\nto deliver as many peas\nas you can.",width-355,240);
+  //textdraw("You have one minute\nto deliver as many peas\nas you can.",width-350,250,50,fontk,3);
   
   if (counter>0){
-    textdraw("You last gave",width*3/4,height/5,90,fontk,5);
-    textdraw(str(counter),width*3/4+25,height/5+90,150,fonts,5);
-    textdraw("peas.",width*3/4+160,height/5+80,90,fontk,5);
+    fill(0, 100);
+    rect(645, 950, 610, 60, 53);
+    textdraw("You last gave       peas.",width/2,height-100,70,fontk,5);
+    textdraw(str(counter),1055,height-100,70,fonts,5);
   }
 }
 
@@ -53,7 +59,7 @@ void gamescreen(){
   image(basket_top,width/4-basket.width/2 ,890-basket.height);
   tint(255);
   
-  textdraw(str(counter),width*1/4,height*1/4,150,fonts,7);
+  textdraw(str(counter),width*1/4,height*1/4+110,150,fonts,7);
   
   if (!isPaused){
     timer = millis()-timestart-timepause;
