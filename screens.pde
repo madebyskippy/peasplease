@@ -1,4 +1,4 @@
-int timeend = 10*1000; // in milliseconds
+int timeend = 60*1000; // in milliseconds
 int startTextY = 875; //dynamic position of start text
 int startTextAbs = 875; //static position of start text
 int startTextVel = 1; 
@@ -67,7 +67,23 @@ void gamescreen(){
     textdraw("Paused!",width/2,height/2-150,150,fonts,5);
     textdraw("Get back on\nthe platform!",width/2,height/2+50,100,fontk,5);
   }
+  if (timer > timeend-3000 && beepPlayed == 0){
+    beepPlayed = 1;
+    beep_noise.rewind();
+    beep_noise.play();
+  }if (timer > timeend-2000 && beepPlayed == 1){
+    beepPlayed = 2;
+    beep_noise.rewind();
+    beep_noise.play();
+  }if (timer > timeend-1000 && beepPlayed == 2){
+    beepPlayed = 3;
+    beep_noise.rewind();
+    beep_noise.play();
+  }
+  
   if (timer > timeend){
+    ding_noise.rewind();
+    ding_noise.play();
     reset();
     //mode = "start";
   }

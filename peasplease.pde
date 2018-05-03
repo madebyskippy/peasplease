@@ -5,8 +5,12 @@ Serial myPort;  // Create object from Serial class
 int val;      // Data received from the serial port
 
 // ------------------------- make this true when the arduino is connected
-boolean arduino = false;
+boolean arduino = true;
 // -------------------------
+
+Minim minim;
+AudioPlayer ball_noise, ding_noise, beep_noise;
+int beepPlayed;
 
 boolean onPlatform;
 
@@ -74,6 +78,11 @@ void setup() {
   for (int i = 0; i < myClouds.length; i++){
     myClouds[i] = new Cloud(random(0, width), random(0, 0.6*height), random(1,4), i);
   }
+  
+  minim = new Minim(this);
+  ball_noise = minim.loadFile("side1.mp3");
+  ding_noise = minim.loadFile("side8.mp3");
+  beep_noise = minim.loadFile("scor.mp3");
 
   fonts = loadFont("DKSnippitySnap-150.vlw");
   fontk = loadFont("Kiddish-100.vlw");
@@ -101,6 +110,7 @@ void reset() {
   btnstate = false;
   hasanim=false;
   frame = 3;
+  beepPlayed = 0;
   IntList rowpos = new IntList(6);
   rowpos.append(0);
   rowpos.append(1);
@@ -203,6 +213,8 @@ void ballout() {
       if ((millis()-btnintime) > 25){
         if ((millis() - balltimer) > 1000) {
           //1 second between ball entries
+          ball_noise.rewind();
+          ball_noise.play();
           counter ++ ;
           balltimer= millis();
           hasanim = true;
