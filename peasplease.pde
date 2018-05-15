@@ -5,7 +5,7 @@ Serial myPort;  // Create object from Serial class
 int val;      // Data received from the serial port
 
 // ------------------------- make this true when the arduino is connected
-boolean arduino = true;
+boolean arduino = false;
 // -------------------------
 
 Minim minim;
@@ -81,8 +81,8 @@ void setup() {
   
   minim = new Minim(this);
   ball_noise = minim.loadFile("side1.mp3");
-  ding_noise = minim.loadFile("side8.mp3");
-  beep_noise = minim.loadFile("scor.mp3");
+  ding_noise = minim.loadFile("sound-beepclean-up.wav");
+  beep_noise = minim.loadFile("sound-beepclean.wav");
 
   fonts = loadFont("DKSnippitySnap-150.vlw");
   fontk = loadFont("Kiddish-100.vlw");

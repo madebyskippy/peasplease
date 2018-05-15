@@ -1,4 +1,4 @@
-int timeend = 60*1000; // in milliseconds
+int timeend = 10*1000; // in milliseconds
 int startTextY = 875; //dynamic position of start text
 int startTextAbs = 875; //static position of start text
 int startTextVel = 1; 
